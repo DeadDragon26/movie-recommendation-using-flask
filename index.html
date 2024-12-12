@@ -1,0 +1,92 @@
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Content-Based Movie Recommender</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    #movie_name {
+      width: 70%;
+      padding: 1em;
+      border-radius: 5px;
+      border: 1px solid grey;
+    }
+    #submission_button {
+      padding: 1em;
+      margin: 1em;
+      border-radius: 5px;
+      background-color: rgb(25, 139, 253);
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Content Based Movie Recommendation System</h2>
+
+  <form action="/" method="POST">
+    <input type="text" id="movie_name" name="movie_name" placeholder="Enter a movie name" required />
+    <input type="submit" id="submission_button" value="Submit" />
+  </form>
+
+</body>
+</html>
+3. found.html (HTML Template for Displaying Recommendations)
+This file will display the recommended movies based on the input movie.
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>Recommended Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    h3 {
+      color: #DC143C;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #f0f0f0;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Recommendations for "{{ search_name }}"</h2>
+
+  {% if movie_names %}
+    <h3>Recommended Movies:</h3>
+    <ul>
+      {% for title, release_date, homepage in zip(movie_names, movie_releaseDate, movie_homepage) %}
+        <li><strong>{{ title }}</strong> - {{ release_date }} - <a href="{{ homepage }}">More Info</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recommendations found for "{{ search_name }}". Please check the movie name and try again.</p>
+  {% endif %}
+
+</body>
+</html>

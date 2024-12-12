@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recommended Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Poppins:300,500&amp;display=swap'>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #ffffff;
+      text-align: center;
+      padding: 20px;
+    }
+    h3 {
+      color: #DC143C;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background-color: #f0f0f0;
+      margin: 5px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Recommendations for "{{ search_name }}"</h2>
+
+  {% if movie_names %}
+    <h3>Recommended Movies:</h3>
+    <ul>
+      {% for i in range(movie_names|length) %}
+        <li>
+          <strong>{{ movie_names[i] }}</strong> - {{ movie_releaseDate[i] }} - <a href="{{ movie_homepage[i] }}">More Info</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recommendations found for "{{ search_name }}". Please check the movie name and try again.</p>
+  {% endif %}
+
+</body>
+</html>
